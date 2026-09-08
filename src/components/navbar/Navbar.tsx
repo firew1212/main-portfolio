@@ -1,265 +1,69 @@
 "use client";
-import Image from "next/image";
 
-import { useEffect, useState } from "react";
-import { Code2, UserRound, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+
+const navItems = [
+  { label: "Work", href: "#projects" },
+  { label: "Services", href: "#services" },
+  { label: "Process", href: "#process" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Navbar() {
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScroll, setLastScroll] = useState(0);
   const [openMenu, setOpenMenu] = useState(false);
 
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-
-      if (currentScroll > lastScroll) {
-        // scrolling down
-        setShowNavbar(false);
-      } else {
-        // scrolling up
-        setShowNavbar(true);
-      }
-
-      setLastScroll(currentScroll);
-    };
-
-
-    window.addEventListener("scroll", handleScroll);
-
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-
-  }, [lastScroll]);
-
-
-
   return (
-    <header
-      className={`
-        fixed
-        top-0
-        left-0
-        w-full
-        z-50
-        transition-transform
-        duration-300
-        ${showNavbar ? "translate-y-0" : "-translate-y-full"}
-      `}
-    >
+    <header className="sticky top-0 z-50 px-4 pt-4 md:px-6">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 shadow-[0_12px_40px_rgba(15,23,42,0.45)] backdrop-blur-xl md:px-6">
+        <a href="#home" className="flex items-center gap-3" aria-label="Firew home">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-sm font-black text-white shadow-[0_0_22px_rgba(59,130,246,0.35)]">
+            F
+          </div>
+          <span className="text-lg font-semibold tracking-tight text-white">
+            firew<span className="text-blue-400">.</span>
+          </span>
+        </a>
 
-      <nav
-        className="
-          max-w-6xl
-          mx-auto
-          mt-4
-          px-6
-          py-4
-          rounded-2xl
-          border
-          border-white/10
-          bg-black/30
-          backdrop-blur-xl
-          flex
-          items-center
-          justify-between
-        "
-      >
+        <div className="hidden items-center gap-7 text-sm text-slate-300 md:flex">
+          {navItems.map((item) => (
+            <a key={item.label} href={item.href} className="transition hover:text-white">
+              {item.label}
+            </a>
+          ))}
+        </div>
 
-
-        {/* Logo */}
-
-       <div className="flex items-center gap-3">
-
-  <Image
-    src="/logo.svg"
-    alt="Efi Logo"
-    width={38}
-    height={38}
-    className="rounded-lg"
-  />
-
-  <h1 className="text-xl font-bold tracking-wide">
-    firew
-    <span className="text-blue-500">.</span>
-  </h1>
-
-</div>
-
-
-
-        {/* Desktop Menu */}
-
-        <div
-          className="
-            hidden
-            md:flex
-            items-center
-            gap-8
-            text-gray-300
-          "
+        <a
+          href="#contact"
+          className="hidden rounded-full border border-blue-400/35 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-100 transition hover:border-blue-300 hover:bg-blue-500/20 md:inline-flex"
         >
-
-          <a 
-            href="#about"
-            className="hover:text-blue-400 transition"
-          >
-            About
-          </a>
-
-
-          <a 
-            href="#skills"
-            className="hover:text-blue-400 transition"
-          >
-            Skills
-          </a>
-
-
-          <a 
-            href="#projects"
-            className="hover:text-blue-400 transition"
-          >
-            Projects
-          </a>
-
-
-          <a 
-            href="#contact"
-            className="hover:text-blue-400 transition"
-          >
-            Contact
-          </a>
-
-
-        </div>
-
-
-
-
-        {/* Desktop Icons */}
-
-        <div className="hidden md:flex items-center gap-4">
-
-          <Code2
-            className="
-              text-gray-400
-              hover:text-white
-              cursor-pointer
-              transition
-            "
-            size={20}
-          />
-
-
-          <UserRound
-            className="
-              text-gray-400
-              hover:text-white
-              cursor-pointer
-              transition
-            "
-            size={20}
-          />
-
-        </div>
-
-
-
-
-        {/* Mobile Button */}
+          Hire me
+        </a>
 
         <button
-          className="md:hidden"
+          type="button"
+          className="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-slate-200 md:hidden"
+          aria-label="Toggle menu"
           onClick={() => setOpenMenu(!openMenu)}
         >
-
-          {
-            openMenu
-            ?
-            <X size={26}/>
-            :
-            <Menu size={26}/>
-          }
-
+          {openMenu ? <X size={18} /> : <Menu size={18} />}
         </button>
-
-
       </nav>
 
-
-
-
-      {/* Mobile Menu */}
-
-      {
-        openMenu && (
-
-          <div
-            className="
-              md:hidden
-              mx-6
-              mt-2
-              rounded-2xl
-              border
-              border-white/10
-              bg-black/80
-              backdrop-blur-xl
-              p-6
-            "
-          >
-
-            <div className="
-              flex
-              flex-col
-              gap-5
-              text-gray-300
-            ">
-
-
-              <a 
-                href="#about"
-                onClick={() => setOpenMenu(false)}
-              >
-                About
+      {openMenu && (
+        <div className="mx-auto mt-3 max-w-6xl rounded-2xl border border-white/10 bg-slate-950/90 p-5 shadow-2xl backdrop-blur-xl md:hidden">
+          <div className="flex flex-col gap-4 text-sm text-slate-200">
+            {navItems.map((item) => (
+              <a key={item.label} href={item.href} onClick={() => setOpenMenu(false)} className="transition hover:text-blue-300">
+                {item.label}
               </a>
-
-
-              <a 
-                href="#skills"
-                onClick={() => setOpenMenu(false)}
-              >
-                Skills
-              </a>
-
-
-              <a 
-                href="#projects"
-                onClick={() => setOpenMenu(false)}
-              >
-                Projects
-              </a>
-
-
-              <a 
-                href="#contact"
-                onClick={() => setOpenMenu(false)}
-              >
-                Contact
-              </a>
-
-
-            </div>
-
+            ))}
+            <a href="#contact" onClick={() => setOpenMenu(false)} className="mt-2 rounded-full bg-blue-500 px-4 py-2 text-center font-medium text-white">
+              Start a project
+            </a>
           </div>
-
-        )
-      }
-
-
+        </div>
+      )}
     </header>
   );
 }

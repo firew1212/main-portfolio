@@ -64,7 +64,7 @@ export default function About() {
             I am a Full Stack Software Engineer focused on
             <span className="text-yellow-500">
               {" "}solving real problem 
-            </span> and developing scalable web applications.
+            </span> and developing scalable web app and mobile app.
 
             <br />
             <br />
