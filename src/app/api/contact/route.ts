@@ -60,9 +60,10 @@ export async function POST(request: Request) {
       );
     }
 
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL || "",
+      replyTo: email,
       subject: `New message from ${name}`,
       html: `
         <h2>New Portfolio Message</h2>
@@ -84,6 +85,18 @@ export async function POST(request: Request) {
         </p>
       `,
     });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return NextResponse.json(
+        {
+          message: "Unable to send your message right now",
+        },
+        {
+          status: 502,
+        }
+      );
+    }
 
     return NextResponse.json({
       message: "Message sent successfully",

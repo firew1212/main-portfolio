@@ -15,6 +15,7 @@ export default function Contact() {
     name: "",
     email: "",
     message: "",
+    website: "",
   });
 
   const [status, setStatus] = useState("");
@@ -42,6 +43,7 @@ export default function Contact() {
           name: "",
           email: "",
           message: "",
+          website: "",
         });
       } else {
         setStatus(data.message);
@@ -119,7 +121,15 @@ export default function Contact() {
               />
             </div>
 
-            <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
+            <input
+              type="text"
+              name="website"
+              value={form.website}
+              onChange={(e) => setForm({ ...form, website: e.target.value })}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+            />
 
             <div>
               <label htmlFor="message" className="mb-2 block text-sm text-slate-300">Project brief</label>
