@@ -51,15 +51,15 @@ export const projects = [
     category: "Full Stack Business Application",
 
     description:
-      "A full barber booking and queue status tracking system.",
+      "A booking and live queue-management platform for barbershops.",
 
 
     problem:
-      "Losing unnecessary time of customers and waiting a lot until his queue ",
+      "Customers lose time waiting without a clear view of queue status or available appointment times.",
 
 
     solution:
-      "Designed and developed a centralized platform that connects barber status into customer and can book at everywhere .",
+      "Designed a centralised platform for availability, appointments, and live queue updates.",
 
 
     architecture: [
@@ -75,7 +75,7 @@ export const projects = [
 
 
     results:
-      "Created a complete operational system replacing manual barber workflows with a structured digital platform and digital queue .",
+      "Replaced manual queue tracking with a clear digital flow for customers and barbers.",
 
 
     links: {

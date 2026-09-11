@@ -56,68 +56,68 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
-      <div className="mb-12 max-w-2xl">
-        <p className="text-sm uppercase tracking-[0.24em] text-blue-300">Contact</p>
-        <h2 className="mt-3 text-3xl font-black tracking-[-0.05em] text-white md:text-5xl">
-          Let’s build something valuable.
+    <section id="contact" className="portfolio-section work-section contact-section">
+      <div className="contact-heading">
+        <p className="eyebrow">Contact</p>
+        <h2 className="section-title">
+          Let&apos;s discuss your next project.
         </h2>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8">
-          <div className="mb-6 inline-flex items-center rounded-full border border-blue-400/30 bg-blue-400/10 px-3 py-1.5 text-xs uppercase tracking-[0.2em] text-blue-200">
+      <div className="contact-grid">
+        <div className="work-panel">
+          <div className="panel-pill">
             Why clients hire me
           </div>
 
           <div className="space-y-4">
             {reasons.map((reason) => (
-              <div key={reason} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-slate-950/60 p-4 text-slate-200">
-                <CheckCircle2 className="mt-0.5 text-blue-300" size={18} />
+              <div key={reason} className="reason-row">
+                <CheckCircle2 size={18} />
                 <span>{reason}</span>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 space-y-4 border-t border-white/10 pt-6 text-slate-300">
-            <a href="mailto:kibretmulat@gmail.com" className="flex items-center gap-3 transition hover:text-blue-300">
+          <div className="contact-links">
+            <a href="mailto:kibretmulat@gmail.com">
               <Mail size={18} />
               <span>kibretmulat@gmail.com</span>
             </a>
-            <a href="https://github.com/firew1212" target="_blank" rel="noreferrer" className="flex items-center gap-3 transition hover:text-blue-300">
+            <a href="https://github.com/firew1212" target="_blank" rel="noreferrer">
               <FaGithub size={18} />
               <span>github.com/firew1212</span>
             </a>
-            <a href="https://linkedin.com/in/firew-mulat" target="_blank" rel="noreferrer" className="flex items-center gap-3 transition hover:text-blue-300">
+            <a href="https://linkedin.com/in/firew-mulat" target="_blank" rel="noreferrer">
               <FaLinkedin size={18} />
               <span>linkedin.com/in/firew-mulat</span>
             </a>
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8">
+        <div className="work-panel">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="name" className="mb-2 block text-sm text-slate-300">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 id="name"
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition focus:border-blue-400"
+                className="work-input"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="mb-2 block text-sm text-slate-300">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 id="email"
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="you@example.com"
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition focus:border-blue-400"
+                className="work-input"
               />
             </div>
 
@@ -132,22 +132,22 @@ export default function Contact() {
             />
 
             <div>
-              <label htmlFor="message" className="mb-2 block text-sm text-slate-300">Project brief</label>
+              <label htmlFor="message">Project brief</label>
               <textarea
                 id="message"
                 rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder="Tell me about your website, app, or business challenge..."
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition focus:border-blue-400"
+                className="work-input"
               />
             </div>
 
-            {status && <p className="text-sm text-blue-300">{status}</p>}
+            {status && <p className="form-status">{status}</p>}
 
             <button
               type="submit"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-blue-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-70"
+              className="lime-button submit-button"
               disabled={loading}
             >
               {loading ? (
@@ -157,7 +157,7 @@ export default function Contact() {
                 </>
               ) : (
                 <>
-                  Send project inquiry
+              Send message
                   <ArrowRight size={16} />
                 </>
               )}
